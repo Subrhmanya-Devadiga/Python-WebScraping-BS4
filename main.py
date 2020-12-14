@@ -30,15 +30,15 @@ def loop():
         con.commit()
     con.close()
 
-# deleting data base to store only newly fetched data
-def deletedatabase(): 
-    con = sqlite3.connect("database.db")
-    c = con.cursor()
-    c.execute("DELETE FROM Job_Info")
-    con.commit()
-    
+def deletedatabase():
+    try:
+        con = sqlite3.connect("database.db")
+        c = con.cursor()
+        c.execute("DELETE FROM Job_Info")
+    except:
+        pass
+
 while True:
-    deletedatabase()
     loop()
     wt = 10
     print(f"waiting {wt} minutes.....")
